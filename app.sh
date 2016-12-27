@@ -3,28 +3,21 @@ LOG=/root/base-provision.log
 exec > $LOG
 exec 2>&1
 
-function update_all () {
-    apt-get -y update
-    apt-get install -y lsscsi
-    apt-get install -y python-pytest python-pip python-dev nginx
-}
-update_all
-OUTPUT_FUN_UPDATE=$?
-case OUTPUT_FUN_UPDATE 
-
 echo "---CUSTOM empieza---"
 export DEBIAN_FRONTEND=noninteractive
 apt-get -y update
 apt-get install -y lsscsi
 apt-get install -y python-pytest python-pip python-dev nginx
+chmod 777 /opt
 
 echo "---CUSTOM pip y virtualenv---"
 pip install virtualenv
 export APP_DIR=/home/mario/aplicacion
 mkdir -p $APP_DIR
+chown mario:www-data $APP_DIR
 cd $APP_DIR
 virtualenv entorno
-    
+source entorno/bin/activate
 
 pip install uwsgi flask
 
