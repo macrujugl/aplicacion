@@ -7,7 +7,7 @@ User=mario
 Group=www-data
 WorkingDirectory=/home/mario/aplicacion
 Environment="PATH=/home/mario/aplicacion/entorno/bin"
-ExecStart=/home/mario/aplicacion/entorno/bin/uwsgi --ini aplicacion.ini
+ExecStart=/home/mario/aplicacion/entorno/bin/uwsgi --ini aplicacion.ini --logto /opt/wsgi.log
 
 [Install]
 WantedBy=multi-user.target 

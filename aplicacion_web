@@ -4,6 +4,6 @@ server {
 
     location / {
         include uwsgi_params;
-        uwsgi_pass unix:/home/mario/aplicacion/aplicacion.sock;
+        uwsgi_pass unix:/home/mario/aplicacion/aplicacion2.sock;
     }
 }
