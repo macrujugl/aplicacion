@@ -15,7 +15,6 @@ export APP_DIR=/home/mario/aplicacion
 mkdir -p $APP_DIR
 cd $APP_DIR
 virtualenv entorno
-chown -R mario:mario $APP_DIR
 source entorno/bin/activate
 
 pip install uwsgi flask
@@ -23,8 +22,10 @@ pip install uwsgi flask
 echo "---Clonando app---"
 git clone https://github.com/macrujugl/aplicacion
 mv ./aplicacion/* .
-chown mario:www-data *
+rmdir ./aplicacion
+chown -R mario:www-data *
 
+echo "---Arrancando servicios---"
 cp aplicacion.service /etc/systemd/system
 systemctl start aplicacion
 systemctl enable aplicacion
