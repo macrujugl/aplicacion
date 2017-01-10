@@ -1,40 +1,32 @@
 #!/bin/bash
-LOG=/root/base-provision.log
+export DEBIAN_FRONTEND=noninteractive
+LOG=/opt/custom_install.log
 exec > $LOG
 exec 2>&1
 
 echo "---CUSTOM empieza---"
-export DEBIAN_FRONTEND=noninteractive
 apt-get -y update
-apt-get install -y lsscsi
-apt-get install -y python-pytest python-pip python-dev nginx
-chmod 777 /opt
+apt-get -y upgrade
+apt-get install -y lsscsi python-pytest python-pip python-dev nginx
+chmod 755 /opt
 
-echo "---CUSTOM pip y virtualenv---"
-pip install virtualenv
-export APP_DIR=/home/mario/aplicacion
-mkdir -p $APP_DIR
-chown mario:www-data $APP_DIR
-cd $APP_DIR
-virtualenv entorno
-source entorno/bin/activate
-
+echo "---CUSTOM pip---"
 pip install uwsgi flask
+cd /opt
 
 echo "---Clonando app---"
 git clone https://github.com/macrujugl/aplicacion
-mv ./aplicacion/* .
-rm -rf ./aplicacion
-chown -R mario:www-data *
+chown -R mario:www-data aplicacion
+cd /opt/aplicacion
 
 echo "---Arrancando servicios---"
 cp aplicacion.service /etc/systemd/system/
 systemctl start aplicacion
 systemctl enable aplicacion
 
+rm /etc/nginx/sites-enabled/default
 cp aplicacion_web /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/aplicacion_web /etc/nginx/sites-enabled
-rm /etc/nginx/sites-enabled/default
 
 systemctl restart nginx
 
