@@ -21,8 +21,8 @@ def hi():
     if request.method=='GET':
         return "<h1 style='color:green'>Estamos en Hi!</h1>"
     else:
-        request.form['primercampo']=primero
-        request.form['segundocampo']=segundo
+        primero=request.form['primercampo']
+        segundo=request.form['segundocampo']
         return render_template('hi.html',primero=primero,segundo=segundo)
 
 @app.route("/metecosas")
