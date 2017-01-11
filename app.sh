@@ -7,6 +7,7 @@ exec 2>&1
 echo "---CUSTOM empieza---"
 apt-get -y update
 apt-get install -y lsscsi python-pytest python-pip python-dev nginx
+useradd -G www-data mario
 chmod 755 /opt
 
 echo "---CUSTOM pip---"

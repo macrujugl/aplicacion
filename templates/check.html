@@ -1,6 +1,10 @@
-{% extends "layout.html" %}
+{% extends "plantillappal.html" %}
 {% block body %}
-  <ul class="entries">
+{% if fondo%2 == 0 %}
+  <ul class="entries" color="red">
+{% else %}
+  <ul class="entries" color="blue">
+{% endif %}
   El Nombre de esta máquina es {{ machine }} que te parece?
   </ul>
 {% endblock %}

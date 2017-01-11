@@ -4,19 +4,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
+    return "<h1 style='color:blue'>Hola Amiguitos!</h1>"
 
+@app.route("/check")
+def check():
     machine_name=socket.gethostname()
-    
     if machine_name[-1].isdigit():
         parity=int(machine_name[-1])%2
     else:
         parity=2
     
-    return "<h1 style='color:blue'>Hola Amiguitos!</h1>"
-
-@app.route("/check")
-def check():
-    return render_template('check.html',machine=machine_name)
+    return render_template('check.html',machine=machine_name,fondo=parity)
 
 @app.route("/hi")
 def hi():
