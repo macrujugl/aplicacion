@@ -16,9 +16,14 @@ def check():
     
     return render_template('check.html',machine=machine_name,fondo=parity)
 
-@app.route("/hi")
+@app.route("/hi", methods=['GET', 'POST'])
 def hi():
-    return "<h1 style='color:green'>Estamos en Hi!</h1>"
+    if request.method=='GET':
+        return "<h1 style='color:green'>Estamos en Hi!</h1>"
+    else:
+        request.form['primercampo']=primero
+        request.form['segundocampo']=segundo
+        return render_template('hi.html',primero=primero,segundo=segundo)
 
 @app.route("/metecosas")
 def metecosas():
