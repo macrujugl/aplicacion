@@ -21,7 +21,7 @@ def hi():
     return "<h1 style='color:green'>Estamos en Hi!</h1>"
 
 @app.route("/metecosas")
-def hi():
+def metecosas():
     return render_template('metecosas.html')
 
 if __name__ == "__main__":
