@@ -6,7 +6,6 @@ exec 2>&1
 
 echo "---CUSTOM empieza---"
 apt-get -y update
-#apt-get -y upgrade
 apt-get install -y lsscsi python-pytest python-pip python-dev nginx
 chmod 755 /opt
 
