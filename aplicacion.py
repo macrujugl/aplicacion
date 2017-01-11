@@ -20,5 +20,9 @@ def check():
 def hi():
     return "<h1 style='color:green'>Estamos en Hi!</h1>"
 
+@app.route("/metecosas")
+def hi():
+    return render_template('metecosas.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

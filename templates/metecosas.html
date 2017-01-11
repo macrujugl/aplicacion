@@ -1,0 +1,13 @@
+{% extends "plantillappal.html" %}
+{% block body %}
+  <h2>Un formulario</h2>
+  <form action="{{ url_for('hi') }}" method="post">
+    <dl>
+      <dt>Primer Campo:
+      <dd><input type="text" name="primercampo">
+      <dt>Segundo Campo:
+      <dd><input type="text" name="segundocampo">
+      <dd><input type="submit" value="Mandandito">
+    </dl>
+  </form>
+{% endblock %}
