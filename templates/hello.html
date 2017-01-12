@@ -1,18 +1,18 @@
 {% extends "plantillappal.html" %}
 {% block particular %}
 <div class="cajita">
-    ¡¡Bienvenidos a la app!!
-    Mirate estos enlaces
+    <p style="font-size: 200%">¡¡Bienvenido!!</p>
+    <p style="font-size: 120%">Mirate estos enlaces</p>
     <ul>
         <li> 
-            <a href="{{ url_for('check') }}"> Paridad del nombre de host (con colores)</a>
+            <a href="{{ url_for('check') }}"> Paridad del último carácter del nombre de host</a>
         </li>
             <ol>
-                <li> Si el nombre del host acaba en par -> Rojo
-                <li> Si el nombre del host acaba en impar -> Azul
-                <li> Si el nombre del host No acaba en un número -> Verde
+                <li> Par -> Rojo
+                <li> Impar -> Azul
+                <li> Letra -> Verde
             </ol>
-        <li><a href="{{ url_for('metecosas') }}"> Un formulario cualquiera</a></li>
+        <li><a href="{{ url_for('metecosas') }}"> Calculemos &#960; </a></li>
     </ul>
 </div>
 {% endblock %}
