@@ -6,8 +6,8 @@ def sample(p):
     x, y = random.random(),random.random()
     return 1 if x*x + y*y < 1 else 0
 
-def calcula_pi(puntos):
-    return reduce(lambda a, b: a + b, map(sample,xrange(0, puntos)))
+def calcula_pi(p):
+    return 4.0*(reduce(lambda a, b: a + b, map(sample,xrange(0, p))))/p
 
 @app.route("/")
 def hello():
@@ -28,8 +28,8 @@ def hi():
     if request.method=='GET':
         return "<h1 style='color:green'>Estamos en Hi!</h1>"
     else:
-        num_puntos=request.form['primercampo']
-        return render_template('hi.html',valor=calcula_pi(num_puntos))
+        num_puntos=int(request.form['primercampo'])
+        return render_template('hi.html', puntos=num_puntos, valor=calcula_pi(num_puntos))
 
 @app.route("/metecosas")
 def metecosas():
