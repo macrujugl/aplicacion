@@ -1,6 +1,13 @@
 from flask import Flask, render_template, url_for, request
-import socket
+import socket, sys, random, time
 app = Flask(__name__)
+
+def sample(p):
+    x, y = random.random(),random.random()
+    return 1 if x*x + y*y < 1 else 0
+
+def calcula_pi(puntos):
+    return reduce(lambda a, b: a + b, map(sample,xrange(0, puntos)))
 
 @app.route("/")
 def hello():
@@ -21,9 +28,8 @@ def hi():
     if request.method=='GET':
         return "<h1 style='color:green'>Estamos en Hi!</h1>"
     else:
-        primero=request.form['primercampo']
-        segundo=request.form['segundocampo']
-        return render_template('hi.html',primero=primero,segundo=segundo)
+        num_puntos=request.form['primercampo']
+        return render_template('hi.html',valor=calcula_pi(num_puntos))
 
 @app.route("/metecosas")
 def metecosas():
