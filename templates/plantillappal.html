@@ -1,9 +1,13 @@
 <!doctype html>
-<title>Mi Aplicacion</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<div class="page">
-  <h1>Mi Aplicacion</h1>
-  <div class="metanav">
-  </div>
-  {% block body %}{% endblock %}
-</div>
+<html>
+    <head>
+        <title>Mi Aplicacion</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="page">
+        <h1>Mi Aplicacion</h1>
+            {% block particular %}{% endblock %}
+        </div>
+    </body>
+</html>
