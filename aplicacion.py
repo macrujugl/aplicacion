@@ -32,8 +32,9 @@ def hi():
         start_time = time.time()
         valor=calcula_pi(num_puntos)
         tiempo = time.time()-start_time
+        error=abs(math.pi-valor)
 
-        return render_template('hi.html', puntos=num_puntos, valor=valor, tiempo=tiempo)
+        return render_template('hi.html', puntos=num_puntos, valor=valor, tiempo=tiempo, error=error)
 
 @app.route("/metecosas")
 def metecosas():
