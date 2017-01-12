@@ -1,0 +1,18 @@
+{% extends "plantillappal.html" %}
+{% block particular %}
+<div class="cajita">
+    ¡¡Bienvenidos a la app!!
+    Mirate estos enlaces
+    <ul>
+        <li> 
+            <a href="{{ url_for('check') }}"> Paridad del nombre de host (con colores</a>
+        </li>
+            <ol>
+                <li> Si el nombre del host acaba en par -> Rojo
+                <li> Si el nombre del host acaba en impar -> Azul
+                <li> Si el nombre del host No acaba en un número -> Verde
+            </ol>
+        <li><a href="{{ url_for('metecosas') }}"> Un formulario cualquiera</a></li>
+    </ul>
+</div>
+{% endblock %}
