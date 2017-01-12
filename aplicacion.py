@@ -1,6 +1,34 @@
 from flask import Flask, render_template, url_for, request
-import socket, sys, random, time, math
+from azure.storage.table import TableService, Entity
+import socket, sys, random, time, math, 
+
 app = Flask(__name__)
+
+def busca_heroe(nombre):
+    account_name=os.environ['AZURE_STORAGE_ACCOUNT']
+    account_key=os.environ['AZURE_STORAGE_ACCESS_KEY']
+    table_service = TableService(account_name, account_key)
+
+    filter="PartitionKey eq "+"\'"+nombre+"\'"
+    
+    consulta=table_service.query_entities('heroes', filter)
+    
+    salida={}
+    
+    for heroe in consulta:
+        for key in heroe.__dict__.keys():
+            salida[key]=str(heroe.__dict__[key])
+    
+    salida['Nombre']=salida['PartitionKey']
+    salida['Grupo']=salida['RowKey']
+    del salida['etag']
+    del salida['PartitionKey']
+    del salida['RowKey']
+    del salida['Timestamp']
+    
+    return salida
+
+
 
 def sample(p):
     x, y = random.random(),random.random()

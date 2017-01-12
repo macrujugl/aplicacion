@@ -11,7 +11,7 @@ useradd -G www-data mario
 chmod 755 /opt
 
 echo "---CUSTOM pip---"
-pip install uwsgi flask
+pip install uwsgi flask azure
 cd /opt
 
 echo "---Clonando app---"
