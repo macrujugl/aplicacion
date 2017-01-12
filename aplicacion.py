@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request
-import socket, sys, random, time
+import socket, sys, random, time, math
 app = Flask(__name__)
 
 def sample(p):
@@ -29,7 +29,11 @@ def hi():
         return "<h1 style='color:green'>Estamos en Hi!</h1>"
     else:
         num_puntos=int(request.form['primercampo'])
-        return render_template('hi.html', puntos=num_puntos, valor=calcula_pi(num_puntos))
+        start_time = time.time()
+        valor=calcula_pi(num_puntos)
+        tiempo = time.time()-start_time
+
+        return render_template('hi.html', puntos=num_puntos, valor=valor, tiempo=tiempo)
 
 @app.route("/metecosas")
 def metecosas():
