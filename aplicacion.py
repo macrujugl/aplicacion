@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request
 from azure.storage.table import TableService, Entity
-import socket, sys, random, time, math, 
+import socket, sys, random, time, math
 
 app = Flask(__name__)
 
