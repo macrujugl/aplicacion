@@ -14,12 +14,12 @@ echo "---CUSTOM pip---"
 pip install uwsgi flask azure
 cd /opt
 
-echo "---Clonando app---"
+echo "---CUSTOM Clonando app---"
 git clone https://github.com/macrujugl/aplicacion
 chown -R mario:www-data aplicacion
 cd /opt/aplicacion
 
-echo "---Arrancando servicios---"
+echo "---CUSTOM Arrancando servicios---"
 cp aplicacion.service /etc/systemd/system/
 systemctl start aplicacion
 systemctl enable aplicacion
