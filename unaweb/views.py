@@ -1,10 +1,6 @@
-"""
-Routes and views for the flask application.
-"""
-
 from datetime import datetime
 from flask import Flask, render_template, url_for, request
-from FlaskWebProject1 import app
+from unaweb import app
 import socket, sys, random, time, math
 
 def sample(p):
