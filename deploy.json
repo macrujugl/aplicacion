@@ -191,7 +191,7 @@
         "typeHandlerVersion": "2.0",
         "autoUpgradeMinorVersion": true,
         "settings": {
-          "fileUris": "https://raw.githubusercontent.com/macrujugl/aplicacion/master/app.sh",
+          "fileUris": ["https://raw.githubusercontent.com/macrujugl/aplicacion/master/app.sh"],
           "commandToExecute": "sh app.sh"
         }
       }
