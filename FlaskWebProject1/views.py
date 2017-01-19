@@ -1,34 +1,11 @@
+"""
+Routes and views for the flask application.
+"""
+
+from datetime import datetime
 from flask import Flask, render_template, url_for, request
-from azure.storage.table import TableService, Entity
+from FlaskWebProject1 import app
 import socket, sys, random, time, math
-
-app = Flask(__name__)
-
-def busca_heroe(nombre):
-    account_name=os.environ['AZURE_STORAGE_ACCOUNT']
-    account_key=os.environ['AZURE_STORAGE_ACCESS_KEY']
-    table_service = TableService(account_name, account_key)
-
-    filter="PartitionKey eq "+"\'"+nombre+"\'"
-    
-    consulta=table_service.query_entities('heroes', filter)
-    
-    salida={}
-    
-    for heroe in consulta:
-        for key in heroe.__dict__.keys():
-            salida[key]=str(heroe.__dict__[key])
-    
-    salida['Nombre']=salida['PartitionKey']
-    salida['Grupo']=salida['RowKey']
-    del salida['etag']
-    del salida['PartitionKey']
-    del salida['RowKey']
-    del salida['Timestamp']
-    
-    return salida
-
-
 
 def sample(p):
     x, y = random.random(),random.random()
@@ -68,5 +45,32 @@ def hi():
 def metecosas():
     return render_template('metecosas.html')
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+
+@app.route('/home')
+def home():
+    """Renders the home page."""
+    return render_template(
+        'index.html',
+        title='Home Page',
+        year=datetime.now().year,
+    )
+
+@app.route('/contact')
+def contact():
+    """Renders the contact page."""
+    return render_template(
+        'contact.html',
+        title='Contact',
+        year=datetime.now().year,
+        message='Your contact page.'
+    )
+
+@app.route('/about')
+def about():
+    """Renders the about page."""
+    return render_template(
+        'about.html',
+        title='About',
+        year=datetime.now().year,
+        message='Your application description page.'
+    )
