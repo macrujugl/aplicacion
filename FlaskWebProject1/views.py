@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Flask, render_template, url_for, request
-from unaweb import app
+from FlaskWebProject1 import app
 import socket, sys, random, time, math
 
 def sample(p):
